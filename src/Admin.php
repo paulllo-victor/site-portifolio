@@ -28,7 +28,7 @@
             if($user->fetch() == 0){
                 $st = $con->prepare("INSERT INTO administrators_online values (?,?,?,?,?)");
             
-                $st->execute(array(null,$login,crypt(rand(100000,9999999)),$_SERVER['REMOTE_ADDR'],date("Y-m-d h:i:s")));
+                $st->execute(array(null,$login, password_hash(rand(100000,9999999),PASSWORD_DEFAULT),$_SERVER['REMOTE_ADDR'],date("Y-m-d h:i:s")));
 
                 if($st->rowCount() != 0){
                     $user = $con->prepare("SELECT * FROM `administrators_online` WHERE email = ?");
@@ -41,11 +41,14 @@
 
                     return true;
                 }else{
+                    self::deslogar($login);
                     return false;
                 }
-            }      
-            //DELETAR O TOKEN CADASTRADOS NO BANCO E CHAMAR A FUNCÇÃO NOVAMENTE      
-            // return true;
+            }  
+            
+            if(self::deslogar($login)){
+                self::administratorOnline($login);
+            }
         }
 
         public static function verificarToken($email,$token)
@@ -60,5 +63,13 @@
             }
         }
 
+        public static function deslogar($email)
+        {
+            $con = Connection::conectar();
+            $st = $con->prepare("DELETE FROM  `administrators_online` WHERE email = ?");
+            $st->execute(array($email));
+            session_destroy();
+            return true;
+        }
         
     }

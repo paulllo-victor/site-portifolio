@@ -11,5 +11,14 @@
     }else{
         header('Location: '.PATH_PAINEL);
     }
+
+    if(isset($_GET['deslogar']) && $_GET['deslogar'] == true){
+        if(Admin::deslogar($_SESSION["email"])){
+            header("Location: ". PATH_PAINEL);
+        }
+    }
+
 ?>
- dashboard
+ dashboardasd
+
+ <a href="<?= PATH_PAINEL ?>?deslogar=true">Deslogar</a>s

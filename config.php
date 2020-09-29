@@ -3,7 +3,7 @@
     
     session_start();
     
-    define("PATH_SITE","http://localhost/Portifolio/");
+    define("PATH_SITE","http://localhost/site-portifolio/");
     define("PATH_PAINEL", PATH_SITE."painel/");
 
     define("HOST","localhost");
