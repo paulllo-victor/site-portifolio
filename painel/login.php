@@ -9,7 +9,7 @@
     <meta name="author" content="Paulo Victor - 26/09/2020">
     <meta name="keywords" content="aprendizagem,dashboard,site,dinamico">
 
-    <link rel="stylesheet" href="../asset/css/stylePainel.css">
+    <link rel="stylesheet" href="../asset/css/styleLogin.css">
 
     <title>Login dashboard</title>
 </head>

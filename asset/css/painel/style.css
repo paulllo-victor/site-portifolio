@@ -1,0 +1,99 @@
+/*
+    NOME: PAULO VICTOR
+    DATA: 02/11/2020
+    HORA: 22:56
+*/
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,700;1,200;1,600&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+}
+body{
+    height: 100%;
+    background-color: #f5f5f5;
+}
+/*STYLE AGIL*/
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+.clear{
+    clear: both;
+}
+.text-right{
+    text-align: right;
+}
+.text-left{
+    text-align: left;
+}
+/***/
+/*STYLE PERSONALIZADO*/
+.menu-left{
+    width: 300px;
+    height: 100%;
+    background-color: aqua;
+    position: fixed;
+    top: 0;
+    background-color: #d6d6d6;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+    overflow-x: auto;   
+}
+.menu-left::-webkit-scrollbar {
+    width: 5px;
+}
+.menu-left::-webkit-scrollbar-thumb {
+    background: white; 
+    border-radius: 10px;
+}
+  
+.menu-left  .item-menu h4{
+    padding: 10px 0 10px 10px;
+    background-color: #42597d;
+    color:white;    
+}
+.menu-left  .item-menu p{
+    padding: 5px 0 5px 20px;
+    background-color: #5d84c2;
+}
+.menu-left  .item-menu p a{
+    text-decoration: none;    
+    color:white
+}
+.menu-top{
+    width: calc(100% - 300px);
+    padding: 20px;
+    background-color: aqua;
+    background-color: #d6d6d6;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);    
+}
+/*MENU-LEFT*/
+.img-avatar{
+    width: 120px;
+    height: 120px;
+    background-color: #f5f5f5;
+    background-position: center;
+    background-size: contain;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 100px;
+}
+.btn-menu-left i {
+    font-size: 25px;
+    color: white;
+    cursor: pointer;
+}
+/***/
+/*MAIN*/
+.main{
+    width: calc(100% - 300px);
+    height: 100vh;
+    background-color: #5d84c2;
+    padding: 40px;
+}
+/***/
+/***/
