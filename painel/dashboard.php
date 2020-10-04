@@ -54,7 +54,7 @@
             <div class="itens-menu-left">
                 <div class="item-menu">
                     <h4>Home</h4>
-                    <p><a href="#">Criar</a></p>
+                    <p><a href="<?= PATH_PAINEL.'homeCreate.php' ?>">Criar</a></p>
                     <p><a href="#">Listar</a></p>
                 </div>
                 <div class="item-menu">
@@ -108,12 +108,28 @@
             <i class="fas fa-bars"></i>
         </div>    
         <div class="text-right right">
-            <a href="<?= PATH_PAINEL ?>?deslogar=true">Deslogar</a>
+            <a class="link" href="<?= PATH_PAINEL ?>"><i class="fas fa-home"></i> Voltar para Home</a>
+            <a class="link" href="<?= PATH_PAINEL ?>?deslogar=true"><i class="fas fa-times"></i> Deslogar</a>
         </div>
      </div>
 
      <div class="main right">
-         Configurações bases
+         <?php
+            $countUrl = count(explode('/',$_SERVER["REQUEST_URI"]));
+            $page = explode('/',$_SERVER["REQUEST_URI"]);
+
+            if($page[$countUrl-1] == 'dashboard.php' || $page[$countUrl-1] == 'dashboard' || $page[$countUrl-1] == ''){
+                include('pages/home.php');
+            }else{
+                $namePage = strpos($page[$countUrl-1],'.php') ? 'pages/'.$page[$countUrl-1] : 'pages/'.$page[$countUrl-1].'.php';
+
+                if(is_file($namePage)){
+                    include($namePage);
+                }else{
+                    include('pages/home.php');
+                }
+            }
+         ?>
      </div>
      
      <div class="clear"></div>

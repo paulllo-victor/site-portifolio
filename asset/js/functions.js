@@ -12,11 +12,13 @@ $(document).ready(function(){
             open = false;            
             $('.menu-left').css('width',0); 
             $('.menu-top').css('width','100%'); 
+            $('.main').css('width','100%'); 
         }else{
             open = true;
             $('.menu-left').css('width','300px'); 
              
             $('.menu-top').css('width','calc(100% - 300px)'); 
+            $('.main').css('width','calc(100% - 300px)'); 
         } 
     })
 })

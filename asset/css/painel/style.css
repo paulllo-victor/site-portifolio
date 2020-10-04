@@ -27,8 +27,20 @@ body{
 .text-right{
     text-align: right;
 }
+.text-center{
+    text-align: center;
+}
 .text-left{
     text-align: left;
+}
+.w33{
+    width: 33%;
+}
+.w50{
+    width: 49%;
+}
+.w100{
+    width: 100%;
 }
 /***/
 /*STYLE PERSONALIZADO*/
@@ -95,5 +107,24 @@ body{
     background-color: #5d84c2;
     padding: 40px;
 }
+.link:first-child{
+    background-color: #aaa;
+    padding: 40px 20px;
+}
+.link{
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+}
 /***/
+/*PAGE HOME CREATE*/
+.item-dashboard{
+    padding: 30px 20px;
+    background-color: #42597d;
+    color: white;
+}
+.item-dashboard table td{
+    margin-right: 40px;
+    display: inline-block;
+}
 /***/

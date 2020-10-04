@@ -72,4 +72,12 @@
             return true;
         }
         
+        public static function countAdministratoresOnlines()
+        {
+            $con = Connection::conectar();
+            $st = $con->prepare("SELECT * FROM `administrators_online`");
+            $st->execute();
+            return $st->fetchAll();
+        }
+        
     }
