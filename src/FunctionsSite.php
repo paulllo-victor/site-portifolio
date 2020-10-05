@@ -143,7 +143,7 @@
             $st = $con->prepare("DELETE FROM `banners` WHERE id = ?");
             $st->execute(array($id));
 
-            return header('Location: ' .PATH_PAINEL.'homeCreate.php');
+            return header('Location: ' .PATH_PAINEL.'listBanners.php');
         }
 
         public static function listBanners()

@@ -38,8 +38,8 @@
         <div class="itens-form">
             <select class="w100" name="active" id="">
                 <option value="0">Deseja deixar esse banner como o ativo?</option>
-                <option value="1" <?= $data['0']['active'] == 1 ? 'selected' : '' ?>>Sim</option>
-                <option value="0"  <?= $data['0']['active'] == 0 ? 'selected' : '' ?>>não </option>
+                <option value="1" <?= isset($data['0']['active']) && $data['0']['active'] == 1 ? 'selected' : '' ?>>Sim</option>
+                <option value="0"  <?= isset($data['0']['active']) && $data['0']['active'] == 0 ? 'selected' : '' ?>>não </option>
             </select>
         </div>
         <div class="itens-form">

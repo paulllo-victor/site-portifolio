@@ -2,7 +2,7 @@
     $listBanner = FunctionsSite::listBanners();
     //TODO FAZER A OPÇÃO PARA DELETAR
     if(isset($_GET['deletar'])){
-
+        FunctionsSite::deleteSlider($_GET['deletar']);
     }
 ?>
 <div class="item-dashboard w100">
@@ -24,6 +24,18 @@
             </div>';
         }
     ?>
-    
     <div class="clear"></div>
 </div>
+
+<script>
+    $(document).ready(function(){
+        $('.delete').click(function(){
+            var response = confirm('tem certeza que deseja apagar esse banner?');
+            if(response){
+                return true;
+            }else{
+                return false;
+            }
+        });
+    });
+</script>
