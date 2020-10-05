@@ -43,6 +43,44 @@ body{
     width: 100%;
 }
 /***/
+/*BTN*/
+.btn{
+    padding: 10px 20px;
+    text-decoration: none;
+}
+.update{
+    background-color: #e2e3e5;
+    color: #383d41;
+}
+.delete{
+    background-color: #f8d7da;    
+    color: #721c24;
+}
+/***/
+/*LIST ITEM*/
+.item-list{
+    padding: 20px 0;
+}
+/***/
+/*DIV ALERT*/
+.div-alert{
+    width: 100%;
+    margin: 10px 0 10px 0;
+    padding: 10px;
+}
+.success{
+    background-color: #d4edda;
+    color: #155724;
+}
+.error{
+    background-color: #f8d7da;
+    color: #721c24;
+}
+.default{
+    background-color: #e2e3e5;
+    color: #383d41;
+}
+/***/
 /*STYLE PERSONALIZADO*/
 .menu-left{
     width: 300px;
@@ -126,5 +164,21 @@ body{
 .item-dashboard table td{
     margin-right: 40px;
     display: inline-block;
+}
+.itens-form input, .itens-form select{
+    margin-top: 10px;
+}
+*:focus{
+    outline: 0;
+}
+.itens-form input[type=text], .itens-form select{
+    padding: 10px 15px;
+}
+.itens-form input[type=file]{
+    border: 1px solid white;
+    padding: 10px;
+}
+.itens-form input[type=submit]{
+    padding: 10px;
 }
 /***/

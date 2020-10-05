@@ -55,7 +55,7 @@
                 <div class="item-menu">
                     <h4>Home</h4>
                     <p><a href="<?= PATH_PAINEL.'homeCreate.php' ?>">Criar</a></p>
-                    <p><a href="#">Listar</a></p>
+                    <p><a href="<?= PATH_PAINEL.'listBanners.php' ?>">Listar</a></p>
                 </div>
                 <div class="item-menu">
                     <h4>Portifolio</h4>
@@ -122,8 +122,10 @@
                 include('pages/home.php');
             }else{
                 $namePage = strpos($page[$countUrl-1],'.php') ? 'pages/'.$page[$countUrl-1] : 'pages/'.$page[$countUrl-1].'.php';
-
-                if(is_file($namePage)){
+                
+                if(is_file(strstr($namePage,'?',true))){
+                    include(strstr($namePage,'?',true));
+                }else if(is_file($namePage)){
                     include($namePage);
                 }else{
                     include('pages/home.php');
