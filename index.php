@@ -4,7 +4,8 @@
 	require_once "vendor/autoload.php";
 	
 	User::acesso();
-	
+	$info = Site::slider();
+	$listPortifolios = Portifolio::listProtifolios();
 ?>
 
 <!DOCTYPE html>
@@ -51,13 +52,13 @@
 
 
 
-	<section class="site-hero" style="background-image: url(asset/site/images/image_1.jpg);" id="section-home" data-stellar-background-ratio="0.5">
+	<section class="site-hero" style="background-image: url(painel/<?= $info[0]['image'] ?>);" id="section-home" data-stellar-background-ratio="0.5">
 		<div class="container">
 			<div class="row intro-text align-items-center justify-content-center">
 				<div class="col-md-10 text-center pt-5">
 
-					<h1 class="site-heading site-animate">Hello, I'm <strong class="d-block">Charles Anderson</strong></h1>
-					<strong class="d-block text-white text-uppercase letter-spacing">and this is My Rezume</strong>
+					<h1 class="site-heading site-animate"><?= $info[0]['title'] ?><strong class="d-block"></strong></h1>
+					<strong class="d-block text-white text-uppercase letter-spacing"><?= $info[0]['subtitle']?></strong>
 
 				</div>
 			</div>
@@ -88,6 +89,27 @@
 
 			<div class="filters-content">
 				<div class="row grid">
+					<?php
+						foreach ($listPortifolios as $key => $value) {
+							echo '<div class="single-portfolio col-sm-4 all '.$value['category'].'">
+							<div class="relative">
+								<div class="thumb">
+									<div class="overlay overlay-bg"></div>
+									<img class="image img-fluid" src="painel/'.$value['image'].'" alt="">
+								</div>
+								<a href="asset/site/images/p1.jpg" class="img-pop-up">  
+									<div class="middle">
+										<div class="text align-self-center d-flex"><img src="asset/site/images/preview.png" alt=""></div>
+									</div>
+								</a>                                  
+							</div>
+							<div class="p-inner">
+								<h4>'.$value['title'].'</h4>
+								<div class="cat">'.$value['category'].'</div>
+							</div>                                         
+						</div>';
+						}
+					?>
 					<div class="single-portfolio col-sm-4 all mockup">
 						<div class="relative">
 							<div class="thumb">
