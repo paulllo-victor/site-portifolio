@@ -5,6 +5,7 @@
 	
 	User::acesso();
 	$info = Site::slider();
+	$listResumes = Site::resumes();
 	$listPortifolios = Portifolio::listProtifolios();
 ?>
 
@@ -230,69 +231,34 @@
 				</div>
 				<div class="col-md-6">
 					<h2 class="mb-5">Education</h2>
-					<div class="resume-item mb-4">
-						<span class="date"><span class="icon-calendar"></span> March 2013 - Present</span>
-						<h3>Masteral in Information Technology</h3>
-						<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
-						<span class="school">New York University</span>
-					</div>
 
-					<div class="resume-item mb-4">
-						<span class="date"><span class="icon-calendar"></span> March 2013 - Present Deacember.</span>
-						<h3>Masteral in Information Technology</h3>
-						<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
-						<span class="school">New York University</span>
-					</div>
-
-					<div class="resume-item mb-4">
-						<span class="date"><span class="icon-calendar"></span> March 2013 - Present</span>
-						<h3>Masteral in Information Technology</h3>
-						<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
-						<span class="school">New York University</span>
-					</div>
-
-					<div class="resume-item mb-4">
-						<span class="date"><span class="icon-calendar"></span> March 2013 - Present Deacember.</span>
-						<h3>Masteral in Information Technology</h3>
-						<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
-						<span class="school">New York University</span>
-					</div>
-
+					<?php
+						foreach ($listResumes as $key => $value) {
+							if($value['category'] == 'Educação'){
+								echo '<div class="resume-item mb-4">
+								<span class="date"><span class="icon-calendar"></span> '.$value['create_at'].'</span>
+								<h3>'.$value['title'].'</h3>
+								<p>'.$value['body'].'</p>
+								<span class="school">'.$value['location'].'</span>
+							</div>';
+							}
+						}
+					?>
 				</div>
 				<div class="col-md-6">
-
-
 					<h2 class="mb-5">Experience</h2>
-
-					<div class="resume-item mb-4">
-						<span class="date"><span class="icon-calendar"></span> March 2013 - Present</span>
-						<h3>Lead Product Designer</h3>
-						<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
-						<span class="school">Github</span>
-					</div>
-
-					<div class="resume-item mb-4">
-						<span class="date"><span class="icon-calendar"></span> March 2013 - Present</span>
-						<h3>Lead Product Designer</h3>
-						<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
-						<span class="school">Facebook</span>
-					</div>
-
-					<div class="resume-item mb-4">
-						<span class="date"><span class="icon-calendar"></span> March 2013 - Present</span>
-						<h3>Lead Product Designer</h3>
-						<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
-						<span class="school">Twitter</span>
-					</div>
-
-					<div class="resume-item mb-4">
-						<span class="date"><span class="icon-calendar"></span> March 2013 - Present</span>
-						<h3>Lead Product Designer</h3>
-						<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
-						<span class="school">Shopify</span>
-					</div>
-
-
+					<?php
+						foreach ($listResumes as $key => $value) {
+							if($value['category'] == 'Experiência'){
+								echo '<div class="resume-item mb-4">
+								<span class="date"><span class="icon-calendar"></span> '.$value['create_at'].'</span>
+								<h3>'.$value['title'].'</h3>
+								<p>'.$value['body'].'</p>
+								<span class="school">'.$value['location'].'</span>
+							</div>';
+							}
+						}
+					?>
 				</div>
 			</div>
 		</div>

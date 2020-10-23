@@ -67,7 +67,7 @@
                 </div>
                 <div class="item-menu">
                     <h4>Resumo</h4>
-                    <p><a href="#">Criar</a></p>
+                    <p><a href="<?= PATH_PAINEL.'resume.php' ?>">Criar</a></p>
                     <p><a href="#">Listar</a></p>
                 </div>
                 <div class="item-menu">
