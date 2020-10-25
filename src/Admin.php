@@ -79,5 +79,160 @@
             $st->execute();
             return $st->fetchAll();
         }
-        
+
+        public static function selectedAdmin()
+        {
+            $con = Connection::conectar();
+            $st = $con->prepare("SELECT * FROM `administrators` WHERE email = ?");
+            $st->execute(array($_SESSION['email']));
+            return $st->fetchAll();
+        }
+
+        public static function selectedAdministrators()
+        {
+            $con = Connection::conectar();
+            $st = $con->prepare("SELECT * FROM `administrators` WHERE email != ?");
+            $st->execute(array($_SESSION['email']));
+            return $st->fetchAll();
+        }
+        public static function selectedAdminUpdate($id)
+        {
+            $con = Connection::conectar();
+            $st = $con->prepare("SELECT * FROM `administrators` WHERE id = ?");
+            $st->execute(array($id));
+            return $st->fetchAll();
+        }
+        public function deleteAdministrators()
+        {
+            # code...
+        }
+
+        public static function createAdministrators($name,$email,$password,$image)
+        {
+            $con = Connection::conectar();
+
+            if(strlen($name) <= 6){
+                return functionsSite::alert('Name do cliente deve ter no mínimo de 6 caracteres','error');
+            }
+            if(strlen($email) <= 6 && filter_var($email,FILTER_VALIDATE_EMAIL)){
+                return functionsSite::alert('Email invalido','error');
+            }
+            if(strlen($password) <= 6){
+                return functionsSite::alert('Testemunho deve ter no mínimo de 6 caracteres','error');
+            }
+
+            $pathImg = self::uploadFile($image);
+
+            if($pathImg == 'formato' || $pathImg == 'error' || $pathImg == 'size'){
+                $messagem = null;
+                switch ($pathImg) {
+                    case 'formato':
+                        $messagem = 'Formato do arquivo invalido, o arquivo deve ser no formato png,jpeg ou jpeg';
+                        break;
+                    case 'size':
+                        $messagem = 'O tamanho máximo deve ser no máximo de 5MB';
+                        break;
+                    case 'error':
+                        $messagem = 'Aconteceu um erro inesperado, tente novamente';
+                        break;
+                }
+                return functionsSite::alert($messagem,'error');
+            }
+
+            $st = $con->prepare("INSERT INTO `administrators` VALUES (?,?,?,?,?)");
+            $response = $st->execute(array('',$name,$email,$password,$pathImg));
+
+            if($response){
+                return  functionsSite::alert('Testemunho cadastrado com sucesso','success');
+            }else{
+                return  functionsSite::alert('Marque o campo de ativação do banner SIM ou NÃO','error');
+            }
+
+        }
+
+        public static function updateAdministrators($name,$email,$password,$image,$id)
+        {
+            $con = Connection::conectar();
+            $st = $con->prepare("SELECT * FROM `administrators` WHERE id = ?");
+            $st->execute(array($id));
+            $response = $st->rowCount();
+
+            if($response){
+                $datas = $st->fetchAll();
+                if(strlen($name) <= 6){
+                    return functionsSite::alert('Name do cliente deve ter no mínimo de 6 caracteres','error');
+                }
+                if(strlen($email) <= 6 && filter_var($email,FILTER_VALIDATE_EMAIL)){
+                    return functionsSite::alert('Email invalido','error');
+                }
+                if(strlen($password) <= 6){
+                    return functionsSite::alert('Testemunho deve ter no mínimo de 6 caracteres','error');
+                }
+    
+                $pathImg = $image['name'] != '' ? self::updateFile($datas[0]['photo'],$image) : $datas[0]['photo'];
+    
+                if($pathImg == 'formato' || $pathImg == 'error' || $pathImg == 'size'){
+                    $messagem = null;
+                    switch ($pathImg) {
+                        case 'formato':
+                            $messagem = 'Formato do arquivo invalido, o arquivo deve ser no formato png,jpeg ou jpeg';
+                            break;
+                        case 'size':
+                            $messagem = 'O tamanho máximo deve ser no máximo de 5MB';
+                            break;
+                        case 'error':
+                            $messagem = 'Aconteceu um erro inesperado, tente novamente';
+                            break;
+                    }
+                    return functionsSite::alert($messagem,'error');
+                }
+    
+                $st = $con->prepare("UPDATE `administrators` SET name = ?,email = ?, password = ?, photo = ? WHERE id = ?");
+                $response = $st->execute(array($name,$email,$password,$pathImg,$id));
+    
+                if($response){
+                    return  functionsSite::alert('Usuário cadastrado com sucesso','success');
+                }else{
+                    return  functionsSite::alert('Marque o campo de ativação do banner SIM ou NÃO','error');
+                }
+            }else{
+                return  functionsSite::alert('Ops, não foi possível editar esse usuário','error');
+            }
+
+        }
+
+        public static function uploadFile($file)
+        {
+            $formatos = ['image/jpeg','image/jpg','image/png'];
+            $sizeImagem = number_format($file['size']/1048576 , 2);
+
+            if($sizeImagem < 5.0){
+                if(in_array($file['type'],$formatos)){
+                    $path = 'uploadFile/users/'.rand(1000000, 9999999) . str_replace('/','.',strstr($file['type'],'/'));
+    
+                    if(move_uploaded_file($file["tmp_name"],$path )){
+                        return $path;
+                    }else{
+                        return 'error';
+                    }
+                }else{
+                    return 'formato';
+                }
+            }else{
+                return 'size';
+            }
+        }
+
+        public function updateFile($oldFile, $newFile)
+        {
+            if(is_file($oldFile)){
+                if(unlink($oldFile)){
+                    return self::uploadFile($newFile);
+                }else{
+                    return false;
+                }
+            }else{
+                return self::uploadFile($newFile);
+            }
+        }
     }

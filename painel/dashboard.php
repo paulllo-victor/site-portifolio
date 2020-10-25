@@ -17,7 +17,7 @@
             header("Location: ". PATH_PAINEL);
         }
     }
-
+    $data = Admin::selectedAdmin();
 ?>
  <!DOCTYPE html>
  <html lang="UTF-8">
@@ -41,16 +41,15 @@
      <div class="menu-left left">
         <div class="container-menu-left">
             <div class="avatar-user">
-                <?php
-                    if(isset($_SESSION["img-avatar"])){
+                <?php 
+                    if(isset($data['0']['photo'])){
                         ?>
-                        <!-- VERIFICAR SE A FOTO EXISTE -->
-                        <div class="img-avatar" style=" background-image: url('../asset/images/avatar/profile-img.png')"></div>
+                            <div class="img-avatar" style=" background-image: url(<?= $data['0']['photo'] ?>)"></div>
                         <?php
                     }else{
-                         ?>
-                         <div class="img-avatar" style=" background-image: url('../asset/images/avatar/profile-img.png')"></div>
-                         <?php
+                        ?>
+                           <div class="img-avatar" style=" background-image: url('../asset/images/avatar/profile-img.png')"></div>
+                        <?php
                     }
                 ?>
             </div>
@@ -76,30 +75,14 @@
                 </div>
                 <div class="item-menu">
                     <h4>Depoimentos de clientes</h4>
-                    <p><a href="#">Criar</a></p>
-                    <p><a href="#">Listar</a></p>
-                </div>
-                <div class="item-menu">
-                    <h4>Serviços</h4>
-                    <p><a href="#">Criar</a></p>
-                    <p><a href="#">Listar</a></p>
-                </div>
-                <div class="item-menu">
-                    <h4>Blog</h4>
-                    <p><a href="#">Criar</a></p>
-                    <p><a href="#">Listar</a></p>
-                </div>
-                <div class="item-menu">
-                    <h4>Contatos</h4>
-                    <p><a href="#">Criar</a></p>
-                    <p><a href="#">Listar</a></p>
-                    <p><a href="#">Redes sociais</a></p>
+                    <p><a href="<?= PATH_PAINEL.'testimonial.php' ?>">Criar</a></p>
+                    <p><a href="<?= PATH_PAINEL.'listTestimonial.php' ?>">Listar</a></p>
                 </div>
                 <div class="item-menu">
                     <h4>Configurações</h4>
-                    <p><a href="#">Alterar dados pessoais</a></p>
-                    <p><a href="#">Adicionar novo usuário</a></p>
-                    <p><a href="#">Listar todos os usuários cadastrados</a></p>
+                    <p><a href="<?= PATH_PAINEL.'administrators.php?user='. $_SESSION["email"] ?>">Alterar dados pessoais</a></p>
+                    <p><a href="<?= PATH_PAINEL.'administrators.php'?>">Adicionar novo usuário</a></p>
+                    <p><a href="<?= PATH_PAINEL.'listAdministrators.php'?>">Listar todos os usuários cadastrados</a></p>
                 </div>
             </div>
         </div>
