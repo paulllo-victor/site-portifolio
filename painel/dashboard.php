@@ -72,8 +72,7 @@
                 </div>
                 <div class="item-menu">
                     <h4>Sobre mim</h4>
-                    <p><a href="#">Criar</a></p>
-                    <p><a href="#">Listar</a></p>
+                    <p><a href="<?= PATH_PAINEL.'aboutMe.php' ?>">Criar/Editar</a></p>
                 </div>
                 <div class="item-menu">
                     <h4>Depoimentos de clientes</h4>
